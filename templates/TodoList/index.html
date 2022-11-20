@@ -24,7 +24,7 @@
                 <div class="col-12 col-md-8 text-start">
                     <h1 class="fw-bold fs-4">{{ task.task_name }}</h1>
                     <p><small>Created: {{ task.created_at }}</small></p>
-                    {% if task.updated_at > task.created_at %}
+                    {% if task.created_at < task.updated_at %}
                         <p><small>Edited: {{ task.updated_at }}</small></p>
                     {% endif %}
                 </div>
