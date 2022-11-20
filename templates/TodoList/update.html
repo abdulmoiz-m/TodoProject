@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'TodoList/base.html' %}
 
 {% block title %}
-    Add Task
+    Update Task
 {% endblock %}
 
 {% block body %}
@@ -9,20 +9,20 @@
         <div class="col-7 text-start">
             <div class="card">
                 <div class="card-header">
-                    New Task
+                    Update Task
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title fs-4">Add a new task</h5>
-                    <form action="{% url 'add_task' %}" method="post">
+{#                    {% url 'update_task'%}#}
+                    <form action="" method="post">
                         {% csrf_token %}
                         {{ form }}
                         <button class="btn btn-primary my-4" type="submit">
-                            <i class="fa-sharp fa-solid fa-floppy-disk"></i> Save
+                            <i class="fa-regular fa-pen-to-square"></i> Update
                         </button>
                     </form>
                 </div>
             </div>
-            <a class="btn btn-warning my-3 fw-bold" href="{% url 'show_tasks' %}" role="button"> <i class="fa-solid fa-eye"></i> View Tasks</a>
+            <a class="btn btn-warning my-3 fw-bold" href="{% url 'show_tasks' %}" role="button"> <i class="fa-sharp fa-solid fa-arrow-left"></i> Go Back</a>
 
         </div>
     </div>

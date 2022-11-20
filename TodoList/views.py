@@ -7,7 +7,7 @@ from .forms import TaskForm
 def index(request):
     tasks = Todo.objects.all()
     context = {'tasks': tasks}
-    return render(request, 'index.html', context)
+    return render(request, 'TodoList/index.html', context)
 
 
 def add(request):
@@ -18,7 +18,7 @@ def add(request):
             return redirect('show_tasks')
 
     context = {'form': form}
-    return render(request, 'add.html', context)
+    return render(request, 'TodoList/add.html', context)
 
 
 def update(request, task_id):
@@ -30,7 +30,7 @@ def update(request, task_id):
             return redirect('show_tasks')
 
     context = {'form': form}
-    return render(request, 'update.html', context)
+    return render(request, 'TodoList/update.html', context)
 
 
 def delete(request, task_id):
@@ -45,4 +45,4 @@ def search(request):
     searched_tasks = Todo.objects.filter(task_name__icontains=search_term)
     context = {'tasks': searched_tasks}
 
-    return render(request, 'index.html', context)
+    return render(request, 'TodoList/index.html', context)
