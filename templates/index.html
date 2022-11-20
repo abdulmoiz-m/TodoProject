@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Todo-List
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <a href="{% url 'show_tasks' %}" class="text-decoration-none"> <h1 class="display-4">TODO-LIST</h1> </a>
+
+        <form action="{% url 'search_task' %}" method="get">
+            <div class="input-group mb-4">
+                <form action="" method="get">
+                    <input type="text" class="form-control" placeholder="Search tasks" name="search-term" aria-label="task" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary btn-primary text-white" type="submit" id="button-addon2">
+                        <i class="fa-sharp fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                </form>
+            </div>
+        </form>
+
+        {% for task in tasks %}
+            <div class="row justify-content-center bg-white rounded shadow mx-auto my-3 pt-3 pb-2 px-2">
+                <div class="col-12 col-md-8 text-start">
+                    <h1 class="fw-bold fs-4">{{ task.task_name }}</h1>
+                    <p><small>Created: {{ task.created_at }}</small></p>
+                    {% if task.updated_at > task.created_at %}
+                        <p><small>Edited: {{ task.updated_at }}</small></p>
+                    {% endif %}
+                </div>
+                <div class="col-12 col-md-4 text-md-end text-start">
+                    <a class="btn btn-outline-primary" href="{% url 'update_task' task.id %}"> <i class="fa-regular fa-pen-to-square"></i> </a>
+                    <a class="btn btn-outline-danger" href="{% url 'delete_task' task.id %}"> <i class="fa-solid fa-xmark"></i> </a>
+                </div>
+            </div>
+
+        {% empty %}
+            <h3 class="text-start">No items found with your search term, or there is no todo added yet.</h3>
+
+        {% endfor %}
+    </div>
+
+
+    <div class="container text-start my-3">
+        <a class="btn btn-success text-start" href="{% url 'add_task' %}" role="button"> <i class="fa-sharp fa-solid fa-plus"></i> Add a new task</a>
+    </div>
+
+{% endblock %}
